@@ -8,6 +8,7 @@ using System.Net;
 
 namespace KuanfiKanjiWeb.Controllers
 {
+    // Need to make to models
     public class KanjiModel
     {
         public List<Kanji> Kanjis { get; set; }
