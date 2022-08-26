@@ -1,0 +1,21 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /*background-image: url(../img/sushi-background.jpg);
+    background-size: contain;
+    background-color: rgba(255, 0, 0, 0.1);*/
+    margin-bottom: 60px;
+}

@@ -1,0 +1,123 @@
+﻿@model KuanfiKanjiWeb.Controllers.Result
+
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+    string[] hiraganaAlphabet =
+    { "あ", "い", "う", "え", "お",
+        "か", "き", "く", "け", "こ",
+        "さ", "し", "す", "せ", "そ",
+        "た", "ち", "つ", "て", "と",
+        "な", "に", "ぬ", "ね", "の",
+        "は", "ひ", "ふ", "へ", "ほ",
+        "ま", "み", "む", "め", "も",
+        "や",      "ゆ",      "よ",
+        "ら", "り", "る", "れ", "ろ",
+        "わ", "ゐ",      "ゑ", "を",
+                            "ん",
+        "が", "ぎ", "ぐ", "げ", "ご",
+        "ざ", "じ", "ず", "ぜ", "ぞ",
+        "だ", "ぢ", "づ", "で", "ど",
+        "ば", "び", "ぶ", "べ", "ぼ",
+        "ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
+
+        "ぁ", "ぃ", "ぅ", "ぇ", "ぉ"
+    };
+}
+@functions {
+    public bool checkIsAlphabet(string character, string[] hiraganaAlphabet)
+    {
+        @foreach (var hiragana in hiraganaAlphabet)
+        {
+            @if (character.Equals(hiragana))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+<br />
+<div>
+    <div style="float:right; font-size:x-large;">
+        <a asp-action="Index" style="text-decoration:none"><div class="btn btn-outline-dark">Back to List</div></a>
+    </div>
+
+    <div>
+        <h1 style="font-size: 200px;">@Html.DisplayFor(model => model.kanji)</h1>
+    </div>
+    <div>
+        <h1 style="font-size: 68px;">@Html.DisplayFor(model => model.chi_vie_kanji)</h1>
+    </div>
+
+    <dl class="row" style="font-size:xx-large">
+        <dt class="col-sm-5">
+            JLPT
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(model => model.jlpt)
+        </dd>
+        <dt class="col-sm-5">
+            Number Strokes
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(model => model.stroke_count)
+        </dd>
+        <dt class="col-sm-5">
+            Meanings
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(model => model.meanings)
+        </dd>
+        <dt class="col-sm-5">
+            Kun
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(model => model.kun_readings)
+        </dd>
+        <dt class="col-sm-5">
+            On
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(model => model.on_readings)
+        </dd>
+    </dl>
+
+    <hr />
+    <table class="table table-broder table-striped" style="width:100%">
+        @foreach (var obj in Model.related_words)
+        {
+            <tr>
+                <td width="30%">
+                    @foreach (char character in @obj.KanjiWord)
+                    {
+                        @if (!checkIsAlphabet(character.ToString(), hiraganaAlphabet))
+                        {
+                            <a asp-controller="Kanji" asp-action="Details" asp-route-id="@character" style="text-decoration:none">
+                                <div class="btn btn-outline-dark">
+                                    <h1>@character</h1>
+                                </div>
+                            </a>
+
+                        }
+                        else
+                        {
+                            <div class="btn btn-outline-dark">
+                                <h1>@character</h1>
+                            </div>
+                        }
+                    }
+                </td>
+                <td width="30%">
+                    <h2>@obj.Writing</h2>
+                </td>
+                <td width="40%">
+                    <h2>@obj.Meaning</h2>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

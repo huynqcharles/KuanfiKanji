@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <img src="~/img/sushi-background.jpg" style="opacity:0.05; width:100%; height:100%;" />
+    <br />
+    <div style="position:absolute; left:120px; top:150px; width:100%;">
+        <a class="nav-link" style="font-size:xx-large" asp-controller="Kanji" asp-action="Index" asp-route-value="1">
+            <div class="btn btn-dark" style="width:40% !important; float:left; padding:20px;">
+                <div class="card-body">
+                    <h1 class="card-title">Kanji List</h1>
+                </div>
+            </div>
+        </a>
+        <a class="nav-link" style="font-size:xx-large" asp-controller="Kanji" asp-action="Index" asp-route-value="1">
+            <div class="btn btn-dark" style="width:40% !important; float:left; padding:20px;">
+                <div class="card-body">
+                    <h1 class="card-title">Learn Kanji</h1>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+﻿@*@model IEnumerable<Kanji>*@
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@model KuanfiKanjiWeb.Controllers.KanjiModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form id="formId" asp-action="Index" asp-controller="Kanji" method="get">
+    <table class="table table-broder table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    <h1>Kanji Name</h1>
+                </th>
+                <th>
+                    <h1>Kanji Meaning</h1>
+                </th>
+                <th>
+                    <h1>Set</h1>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group" style="font-size:30px;">
+                        <label class="control-label">Select Kanji Set</label><br />
+                        @Html.DropDownList("kanjiSet", null, new {
+                        @class="btn btn-dark dropdown-toggle",
+                        @style="width:100%; font-size:25px;",
+                        onchange="document.location.href='/Kanji/Index?value='+this.value;"
+                        })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            @foreach (var obj in Model.Kanjis)
+            {
+                <tr>
+                    <td width="30%">
+                        <a asp-controller="Kanji" asp-action="Details" asp-route-id="@obj.Name" style="text-decoration:none">
+                            <div class="btn btn-outline-dark">
+                                <h1>@obj.Name</h1>
+                            </div>
+                        </a>
+                    </td>
+                    <td width="50%">
+                        <h2>@obj.Chi_Vie_Meaning</h2>
+                    </td>
+                    <td width="20%">
+                        <h2>@obj.Set</h2>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div>
+        <ul class="pagination pagination-lg">
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                <li class="page-item">
+                    @if (i != Model.CurrentPageIndex)
+                    {
+                        <a class="page-link" href="javascript:PagerClick(@i);">@i</a>
+                    }
+                    else
+                    {
+                        <span class="page-link active">@i</span>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+    <input type="hidden" id="hfCurrentPageIndex" name="currentPageIndex" />
+</form>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#dropdownlist').on('change', function () {
+            $.ajax({
+                type: 'POST',
+                url: 'Kanji/Index',
+                data: { 'key': $('#dropdownlist option:selected').text() },
+                dataType: 'json'
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    function PagerClick(index) {
+        document.getElementById("hfCurrentPageIndex").value = index;
+        document.getElementById("formId").submit();
+    }
+</script>
