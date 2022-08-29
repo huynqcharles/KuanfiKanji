@@ -28,9 +28,9 @@
 @functions {
     public bool checkIsAlphabet(string character, string[] hiraganaAlphabet)
     {
-        @foreach (var hiragana in hiraganaAlphabet)
+    @foreach (var hiragana in hiraganaAlphabet)
         {
-            @if (character.Equals(hiragana))
+    @if (character.Equals(hiragana))
             {
                 return true;
             }
@@ -49,7 +49,7 @@
         <h1 style="font-size: 200px;">@Html.DisplayFor(model => model.kanji)</h1>
     </div>
     <div>
-        <h1 style="font-size: 68px;">@Html.DisplayFor(model => model.chi_vie_kanji)</h1>
+        <h1 style="font-size: 68px; font-family:Arial;">@Html.DisplayFor(model => model.chi_vie_kanji)</h1>
     </div>
 
     <dl class="row" style="font-size:xx-large">
@@ -114,7 +114,7 @@
                     <h2>@obj.Writing</h2>
                 </td>
                 <td width="40%">
-                    <h2>@obj.Meaning</h2>
+                    <h2 style="font-family:Arial;">@obj.Meaning</h2>
                 </td>
             </tr>
         }
