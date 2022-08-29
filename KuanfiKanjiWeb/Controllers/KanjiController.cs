@@ -8,7 +8,6 @@ using System.Net;
 
 namespace KuanfiKanjiWeb.Controllers
 {
-    // Need to make to models
     public class KanjiModel
     {
         public List<Kanji> Kanjis { get; set; }
@@ -49,6 +48,7 @@ namespace KuanfiKanjiWeb.Controllers
             _db = db;
         }
 
+        // Get list of kanji set from database
         public List<SelectListItem> listKanjiSet()
         {
             List<SelectListItem> kanjiSet = new List<SelectListItem>();
@@ -59,6 +59,7 @@ namespace KuanfiKanjiWeb.Controllers
             return kanjiSet;
         }
 
+        // Index, list of kanji
         [HttpGet]
         public IActionResult Index(int? value, int currentPageIndex = 1)
         {
@@ -78,6 +79,7 @@ namespace KuanfiKanjiWeb.Controllers
             return View(this.GetKanjis(value, currentPageIndex));
         }
 
+        // Get kanjis by page
         private KanjiModel GetKanjis(int? value, int currentPage)
         {
             int maxRows = 10;
@@ -95,7 +97,7 @@ namespace KuanfiKanjiWeb.Controllers
             return kanjiModel;
         }
 
-        // GET
+        // Get detail page of a kanji
         public IActionResult Details(string? id)
         {
             if (id == null)
@@ -139,6 +141,7 @@ namespace KuanfiKanjiWeb.Controllers
             return View(result);
         }
 
+        // Get all properties of a kanji from Json get from kanjiapi.dev
         public Root GetRootFromJson(string kanji)
         {
             var json = "";
@@ -160,6 +163,7 @@ namespace KuanfiKanjiWeb.Controllers
             return obj;
         }
 
+        // Get all words contain this kanji from database
         public List<RelatedWords> GetRelatedWords(string kanji)
         {
             var relatedWords = _db.RelatedWords.Where(x => x.KanjiWord.Contains(kanji)).ToList();
