@@ -10,8 +10,17 @@
             @Html.DropDownList("kanjiSet", null, new {
             @class="btn btn-dark dropdown-toggle",
             @style="width:100%; font-size:25px;",
-            onchange="document.location.href='/Kanji/Index?value='+this.value;"
+            onchange="document.location.href='/LearnKanji/Index?value='+this.value;"
             })
         </div>
     </div>
 </div>
+<br />
+<label class="control-label h3">Total Words: @ViewBag.totalWords</label>
+<br />
+<label class="control-label h3">Learned: @ViewBag.learned</label>
+<br />
+<label class="control-label h3">Not Learned: @ViewBag.notLearned</label>
+<br />
+<br />
+<button type="button" class="btn btn-outline-dark" style="width:200px; font-size:30px; margin-left:100px;">START!</button>
