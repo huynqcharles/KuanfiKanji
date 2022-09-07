@@ -8,37 +8,6 @@ using System.Net;
 
 namespace KuanfiKanjiWeb.Controllers
 {
-    public class KanjiModel
-    {
-        public List<Kanji> Kanjis { get; set; }
-        public int CurrentPageIndex { get; set; }
-        public int PageCount { get; set; }
-    }
-    public class Result
-    {
-        public string chi_vie_kanji { get; set; }
-        public string kanji { get; set; }
-        public int stroke_count { get; set; }
-        public string meanings { get; set; }
-        public string kun_readings { get; set; }
-        public string on_readings { get; set; }
-        public string jlpt { get; set; }
-        public List<RelatedWords> related_words { get; set; }
-    }
-    public class Root
-    {
-        public string kanji { get; set; }
-        public int grade { get; set; }
-        public int stroke_count { get; set; }
-        public List<string> meanings { get; set; }
-        public List<string> kun_readings { get; set; }
-        public List<string> on_readings { get; set; }
-        public List<object> name_readings { get; set; }
-        public int jlpt { get; set; }
-        public string unicode { get; set; }
-        public string heisig_en { get; set; }
-    }
-
     public class KanjiController : Controller
     {
         private readonly ApplicationDbContext _db;
