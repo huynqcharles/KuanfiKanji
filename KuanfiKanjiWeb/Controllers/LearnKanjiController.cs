@@ -24,6 +24,12 @@ namespace KuanfiKanjiWeb.Controllers
             return kanjiSet;
         }
 
+        // Get info of lession set: number of words learned, not learned...
+        public (int, int, int) getLessonInfo()
+        {
+            return (0, 0, 0);
+        }
+
         public IActionResult Index()
         {
             var kanjiSet = listKanjiSet();
