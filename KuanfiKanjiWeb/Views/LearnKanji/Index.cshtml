@@ -1,0 +1,17 @@
+﻿@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@model KuanfiKanjiWeb.Models.KanjiModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group" style="font-size:30px;">
+            <label class="control-label">Select Lesson To Learn</label><br />
+            @Html.DropDownList("kanjiSet", null, new {
+            @class="btn btn-dark dropdown-toggle",
+            @style="width:100%; font-size:25px;",
+            onchange="document.location.href='/Kanji/Index?value='+this.value;"
+            })
+        </div>
+    </div>
+</div>
