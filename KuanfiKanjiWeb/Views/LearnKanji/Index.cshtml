@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+<form method="get">
 <div class="row">
     <div class="col-md-4">
         <div class="form-group" style="font-size:30px;">
@@ -23,4 +24,6 @@
 <label class="control-label h3">Not Learned: @ViewBag.notLearned</label>
 <br />
 <br />
-<button type="button" class="btn btn-outline-dark" style="width:200px; font-size:30px; margin-left:100px;">START!</button>
+    <button asp-controller="LearnKanji" asp-action="Learn" asp-route-value=this.value type="submit" 
+    class="btn btn-outline-dark" id="btnStart" style="width:200px; font-size:30px; margin-left:100px;">START!</button>
+</form>
